@@ -61,11 +61,11 @@ function generateString(length) {
     //store answer as var passwordChoice.length
 function passwordLength() {
   var whatLength= window.prompt("How long do you want your password? Must be between 8 and 128 characters.");
-  // if (whatLength === null || whatLength === '') {
-  //   whatLength = "cancel";
-  //   console.log(whatLength);
-  //   return;
-  // }
+  if (whatLength === null || whatLength === '') {
+    whatLength = "cancel";
+    console.log(whatLength);
+    return;
+  }
   if(whatLength >= 8 && whatLength <= 128) {
     passwordChoice.length = whatLength;
   }
