@@ -38,14 +38,14 @@ function generateString(length) {
   const specialLength = special.length;
   for ( var i = 0; i < length; i++) {
     result += alphabet.charAt(Math.floor(Math.random() * alphabetLength));
-    if (passwordChoice.num === "yes"|| passwordChoice.num ==="YES") {
+    if (passwordChoice.num === "yes") {
       result += numbers.charAt(Math.floor(Math.random() * numbersLength));
     }
-    if (passwordChoice.special === "yes" || passwordChoice.special === "YES") {
+    if (passwordChoice.special === "yes") {
       result += special.charAt(Math.floor(Math.random() * specialLength));
     }
   }
-  if (passwordChoice.case === "lowercase" || passwordChoice.case === "LOWERCASE") {
+  if (passwordChoice.case === "lowercase") {
     result = result.toLocaleLowerCase();
   }
 
@@ -92,10 +92,11 @@ function passwordCase() {
 //Store answer in var = passwordChoice.num
 function passwordNum() {
   var whatNum = window.prompt("Do you want your password to have numbers, yes or no?");
-  if (whatNum === "yes" || whatNum === "YES" ) {
+  whatNum = whatNum.toLocaleLowerCase();
+  if (whatNum === "yes") {
     passwordChoice.num = whatNum;
   }
-  else if (whatNum === "no" || whatNum === "NO") {
+  else if (whatNum === "no") {
     passwordChoice.num = whatNum;
   }
   else {
@@ -108,11 +109,12 @@ function passwordNum() {
 // use an if statement to determine yes or no, else repeat prompt
 //Store answer in var = passwordChoice.special
 function passwordSpecial() {
-  var whatSpecial = window.prompt("Do you want your password to have numbers, yes or no?");
-  if (whatSpecial === "yes" || whatSpecial === "YES" ) {
+  var whatSpecial = window.prompt("Do you want your password to have special characters, yes or no?");
+  whatSpecial = whatSpecial.toLocaleLowerCase();
+  if (whatSpecial === "yes") {
     passwordChoice.special = whatSpecial;
   }
-  else if (whatSpecial === "no" || whatSpecial === "NO") {
+  else if (whatSpecial === "no") {
     passwordChoice.special = whatSpecial;
   }
   else {
