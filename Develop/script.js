@@ -11,7 +11,8 @@
 // When the user clicks the button they are asked four questions that determine the variables that are used to make the password. 
 function generatePassword() {
   passwordLength();
-  console.log("test");
+  passwordCase();
+  // console.log("test");
   console.log(passwordChoice);
 };
 //the passwordChoice variables are stored as a string which can be used to generate the final password
@@ -24,16 +25,32 @@ var passwordChoice = {
   //use a function to window.prompt "How long do you want your password? Must be between 8 and 128 characters."
     //use an if statement to accept an input between 8 and 128. else repeat prompt. 
     //store answer as var passwordChoice.length
-  function passwordLength() {
-    var whatLength= window.prompt("How long do you want your password? Must be between 8 and 128 characters.");
-    if(whatLength >= 8 && whatLength <= 128) {
-      passwordChoice.length = whatLength;
-    }
-    else {
-      return passwordLength();
-    }
-   
+function passwordLength() {
+  var whatLength= window.prompt("How long do you want your password? Must be between 8 and 128 characters.");
+  if(whatLength >= 8 && whatLength <= 128) {
+    passwordChoice.length = whatLength;
   }
+  else {
+    return passwordLength();
+  }
+  
+};
+
+//use a function to window.prompt "Do you want your password to be uppercase or lowercase? User must choose one to proceed."
+  // use ans if statement to determine yes or no. else repeat prompt
+  //store answer as var passwordChoice.case
+function passwordCase() {
+  var whatCase = window.prompt("Do you want your password to be uppercase or lowercase?");
+  if (whatCase === "uppercase" || whatCase === "UPPERCASE" ) {
+    passwordChoice.case = whatCase;
+  }
+  else if (whatCase === "lowercase" || whatCase === "LOWERCASE") {
+    passwordChoice.case = whatCase;
+  }
+  else {
+    return passwordCase();
+  }
+};
 
 
 // Get references to the #generate element
