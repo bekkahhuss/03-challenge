@@ -30,6 +30,7 @@ const alphabet ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const numbers ='0123456789';
 const special ='!"#$%&-()*=+,./:;<>?@{[}]\|_~`^';
 
+
 //use a function to generate a random string of characters 
 function generateString(length) {
   var result = ' ';
@@ -60,6 +61,11 @@ function generateString(length) {
     //store answer as var passwordChoice.length
 function passwordLength() {
   var whatLength= window.prompt("How long do you want your password? Must be between 8 and 128 characters.");
+  // if (whatLength === null || whatLength === '') {
+  //   whatLength = "cancel";
+  //   console.log(whatLength);
+  //   return;
+  // }
   if(whatLength >= 8 && whatLength <= 128) {
     passwordChoice.length = whatLength;
   }
@@ -74,6 +80,10 @@ function passwordLength() {
   //store answer as var passwordChoice.case
 function passwordCase() {
   var whatCase = window.prompt("Do you want your password to be uppercase or lowercase?");
+  if (whatCase === null || whatCase === '') {
+    whatCase = "cancel";
+    return;
+  }
   whatCase = whatCase.toLocaleLowerCase();
   if (whatCase === "uppercase") {
     passwordChoice.case = whatCase;
@@ -82,7 +92,7 @@ function passwordCase() {
     passwordChoice.case = whatCase;
   
   }
-  else {
+    else {
     return passwordCase();
   }
 };
@@ -92,6 +102,11 @@ function passwordCase() {
 //Store answer in var = passwordChoice.num
 function passwordNum() {
   var whatNum = window.prompt("Do you want your password to have numbers, yes or no?");
+  if (whatNum === null || whatNum === '') {
+    whatNum = "cancel";
+    console.log(whatNum);
+    return;
+  }
   whatNum = whatNum.toLocaleLowerCase();
   if (whatNum === "yes") {
     passwordChoice.num = whatNum;
@@ -104,12 +119,16 @@ function passwordNum() {
   }
 };
 
-
 //use a function to window.prompt"Do you want your password to have special characters, yes or no?" User must choose one to proceed. 
 // use an if statement to determine yes or no, else repeat prompt
 //Store answer in var = passwordChoice.special
 function passwordSpecial() {
   var whatSpecial = window.prompt("Do you want your password to have special characters, yes or no?");
+  if (whatSpecial === null || whatSpecial === '') {
+    whatSpecial = "cancel";
+    console.log(whatSpecial);
+    return;
+  }
   whatSpecial = whatSpecial.toLocaleLowerCase();
   if (whatSpecial === "yes") {
     passwordChoice.special = whatSpecial;
