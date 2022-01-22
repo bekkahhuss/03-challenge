@@ -12,6 +12,8 @@
 function generatePassword() {
   passwordLength();
   passwordCase();
+  passwordNum();
+  passwordSpecial();
   // console.log("test");
   console.log(passwordChoice);
   return generateString(passwordChoice.length); 
@@ -25,14 +27,23 @@ var passwordChoice = {
   special: null
 };
 const alphabet ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numbers ='0123456789';
+const special ='!"#$%&-()*=+,./:;<>?@{[}]\|_~`^';
 
 //use a function to generate a random string of characters 
 function generateString(length) {
   var result = ' ';
   const alphabetLength = alphabet.length;
+  const numbersLength = numbers.length;
+  const specialLength = special.length;
   for ( var i = 0; i < length; i++) {
     result += alphabet.charAt(Math.floor(Math.random() * alphabetLength));
-
+    if (passwordChoice.num === "yes"|| passwordChoice.num ==="YES") {
+      result += numbers.charAt(Math.floor(Math.random() * numbersLength));
+    }
+    if (passwordChoice.special === "yes" || passwordChoice.special === "YES") {
+      result += special.charAt(Math.floor(Math.random() * specialLength));
+    }
   }
   if (passwordChoice.case === "lowercase" || passwordChoice.case === "LOWERCASE") {
     result = result.toLocaleLowerCase();
@@ -58,23 +69,56 @@ function passwordLength() {
   
 };
 
-//use a function to window.prompt "Do you want your password to be uppercase or lowercase? User must choose one to proceed."
+//use a function to window.prompt "Do you want your password to be uppercase or lowercase?" User must choose one to proceed.
   // use ans if statement to determine yes or no. else repeat prompt
   //store answer as var passwordChoice.case
 function passwordCase() {
   var whatCase = window.prompt("Do you want your password to be uppercase or lowercase?");
-  if (whatCase === "uppercase" || whatCase === "UPPERCASE" ) {
+  whatCase = whatCase.toLocaleLowerCase();
+  if (whatCase === "uppercase") {
     passwordChoice.case = whatCase;
   }
-  else if (whatCase === "lowercase" || whatCase === "LOWERCASE") {
+  else if (whatCase === "lowercase") {
     passwordChoice.case = whatCase;
+  
   }
   else {
     return passwordCase();
   }
 };
 
+//use a function to window.prompt"Do you want your password to have numbers, yes or no?" User must choose one to proceed. 
+// use an if statement to determine yes or no, else repeat prompt
+//Store answer in var = passwordChoice.num
+function passwordNum() {
+  var whatNum = window.prompt("Do you want your password to have numbers, yes or no?");
+  if (whatNum === "yes" || whatNum === "YES" ) {
+    passwordChoice.num = whatNum;
+  }
+  else if (whatNum === "no" || whatNum === "NO") {
+    passwordChoice.num = whatNum;
+  }
+  else {
+    return passwordNum();
+  }
+};
 
+
+//use a function to window.prompt"Do you want your password to have special characters, yes or no?" User must choose one to proceed. 
+// use an if statement to determine yes or no, else repeat prompt
+//Store answer in var = passwordChoice.special
+function passwordSpecial() {
+  var whatSpecial = window.prompt("Do you want your password to have numbers, yes or no?");
+  if (whatSpecial === "yes" || whatSpecial === "YES" ) {
+    passwordChoice.special = whatSpecial;
+  }
+  else if (whatSpecial === "no" || whatSpecial === "NO") {
+    passwordChoice.special = whatSpecial;
+  }
+  else {
+    return passwordSpecial();
+  }
+};
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
