@@ -14,7 +14,9 @@ function generatePassword() {
   passwordCase();
   // console.log("test");
   console.log(passwordChoice);
+  return generateString(passwordChoice.length); 
 };
+
 //the passwordChoice variables are stored as a string which can be used to generate the final password
 var passwordChoice = {
   length: null,
@@ -22,6 +24,26 @@ var passwordChoice = {
   num: null, 
   special: null
 };
+const alphabet ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+//use a function to generate a random string of characters 
+function generateString(length) {
+  var result = ' ';
+  const alphabetLength = alphabet.length;
+  for ( var i = 0; i < length; i++) {
+    result += alphabet.charAt(Math.floor(Math.random() * alphabetLength));
+
+  }
+  if (passwordChoice.case === "lowercase" || passwordChoice.case === "LOWERCASE") {
+    result = result.toLocaleLowerCase();
+  }
+
+  console.log(result);
+  return result;
+
+ 
+};
+
   //use a function to window.prompt "How long do you want your password? Must be between 8 and 128 characters."
     //use an if statement to accept an input between 8 and 128. else repeat prompt. 
     //store answer as var passwordChoice.length
