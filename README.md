@@ -11,3 +11,5 @@ Password generator that randomly generates a password based on four inclusion ch
 * https://bekkahhuss.github.io/03-challenge/
 
 UNC Bootcamp Challenge 03 JavaScript
+
+![image](https://user-images.githubusercontent.com/96135310/150627974-182d2789-37f1-43a3-852d-8328e5613a05.png)
