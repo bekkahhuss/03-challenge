@@ -16,20 +16,43 @@ function generatePassword() {
   passwordLower();
   passwordNum();
   passwordSpecial();
+  realTruth();
   // // console.log("test");
-  console.log(passwordChoice);
-  return generateString(passwordChoice.length); 
+  // console.log(passwordChoice);
+  console.log(truthInt);
+   return generateString(choiceLength); 
 };
 
+// truthInt variables are stored as a string to generate a value representing the number of "yes" choices were made by the user. 
+// Refactor Theory: function generateString(passwordChoice.length / truthInt) will result in correct number of characters in password. 
+
+// var truthInt = {
+//   upper: null,
+//   lower: null,
+//   num: null,
+//   special: null
+// }
+
+
 //the passwordChoice variables are stored as a string which can be used to generate the final password
-var passwordChoice = {
-  length: null,
-  // case: null,
-  upper: null,
-  lower: null,
-  num: null, 
-  special: null
-};
+// var passwordChoice = {
+//   length: null,
+//   // case: null,
+//   upper: null,
+//   lower: null,
+//   num: null, 
+//   special: null
+// };
+
+var choiceLength = null; 
+var choiceUpper = null; 
+var choiceLower = null; 
+var choiceNum = null; 
+var choiceSpecial = null; 
+
+
+var truthInt = 4;
+
 const alphabetUpper ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const alphabetLower ='abcdefghijklmnopqurstuvwxyz';
 const numbers ='0123456789';
@@ -44,18 +67,18 @@ function generateString(length) {
   const specialLength = special.length;
  
   for ( var i = 0; i < length; i++) {
-    if (passwordChoice.upper === "yes") {
+    if (choiceUpper === 1) {
       result += alphabetUpper.charAt(Math.floor(Math.random() * alphabetUpperLength));
     }
-    if (passwordChoice.lower === "yes") {
+    if (choiceLower === 1) {
       result += alphabetLower.charAt(Math.floor(Math.random() * alphabetLowerLength));
     }
-    if (passwordChoice.num === "yes") {
+    if (choiceNum === 1) {
       result += numbers.charAt(Math.floor(Math.random() * numbersLength));
     }
-    if (passwordChoice.special === "yes") {
+    if (choiceSpecial === 1) {
       result += special.charAt(Math.floor(Math.random() * specialLength));
-    }
+    } 
   }
   // if (passwordChoice.case === "lowercase") {
   //   result = result.toLocaleLowerCase();
@@ -73,7 +96,8 @@ function generateString(length) {
 function passwordLength() {
   var whatLength= window.prompt("How long do you want your password? Must be between 8 and 128 characters.");
   if(whatLength >= 8 && whatLength <= 128) {
-    passwordChoice.length = whatLength;
+    choiceLength = (whatLength / truthInt);
+    console.log(choiceLength);
   }
   else {
     return passwordLength();
@@ -107,10 +131,12 @@ function passwordUpper() {
   var whatUpper = window.prompt("Do you want your password to have uppercase letters? Yes or no.");
   whatUpper = whatUpper.toLocaleLowerCase();
   if (whatUpper === "yes"){
-    passwordChoice.upper = whatUpper;
+   choiceUpper = 1;
+    // truthInt.upper = 1;
   }
   else if (whatUpper === "no") {
-    passwordChoice.upper = whatUpper;
+   choiceUpper = 0;
+    // truthInt.upper = 0;
   }
   else {
     return passwordUpper();
@@ -124,10 +150,12 @@ function passwordLower() {
   var whatLower = window.prompt("Do you want your password to have lowercase letters? Yes or no.");
   whatLower = whatLower.toLocaleLowerCase();
   if (whatLower === "yes"){
-    passwordChoice.lower = whatLower;
+    choiceLower = 1;
+    // truthInt.lower = 1;
   }
   else if (whatLower === "no") {
-    passwordChoice.lower = whatLower;
+    choiceLower = 0;
+    // truthInt.lower = 0;
   }
   else {
     return passwordLower();
@@ -142,10 +170,12 @@ function passwordNum() {
   var whatNum = window.prompt("Do you want your password to have numbers, yes or no?");
   whatNum = whatNum.toLocaleLowerCase();
   if (whatNum === "yes") {
-    passwordChoice.num = whatNum;
+   choiceNum = 1;
+    // truthInt.num = 1;
   }
   else if (whatNum === "no") {
-    passwordChoice.num = whatNum;
+   choiceNum = 0;
+    // truthInt.num = 0;
   }
   else {
     return passwordNum();
@@ -160,15 +190,25 @@ function passwordSpecial() {
   var whatSpecial = window.prompt("Do you want your password to have special characters, yes or no?");
   whatSpecial = whatSpecial.toLocaleLowerCase();
   if (whatSpecial === "yes") {
-    passwordChoice.special = whatSpecial;
+    choiceSpecial = 1;
+    // truthInt.special = 1;
   }
   else if (whatSpecial === "no") {
-    passwordChoice.special = whatSpecial;
+    choiceSpecial = 0;
+    // truthInt.special = 0;
   }
   else {
     return passwordSpecial();
   }
 };
+
+function realTruth() {
+  var newTruth = [choiceUpper, choiceLower, choiceNum, choiceSpecial];
+  const reducer = (previousValue, currentValue) => previousValue + currentValue;
+  
+ console.log(newTruth.reduce(reducer));
+};
+
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
