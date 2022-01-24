@@ -11,10 +11,12 @@
 // When the user clicks the button they are asked four questions that determine the variables that are used to make the password. 
 function generatePassword() {
   passwordLength();
-  passwordCase();
+  // passwordCase();
+  passwordUpper();
+  passwordLower();
   passwordNum();
   passwordSpecial();
-  // console.log("test");
+  // // console.log("test");
   console.log(passwordChoice);
   return generateString(passwordChoice.length); 
 };
@@ -22,22 +24,32 @@ function generatePassword() {
 //the passwordChoice variables are stored as a string which can be used to generate the final password
 var passwordChoice = {
   length: null,
-  case: null,
+  // case: null,
+  upper: null,
+  lower: null,
   num: null, 
   special: null
 };
-const alphabet ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const alphabetUpper ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const alphabetLower ='abcdefghijklmnopqurstuvwxyz';
 const numbers ='0123456789';
 const special ='!"#$%&-()*=+,./:;<>?@{[}]\|_~`^';
 
 //use a function to generate a random string of characters 
 function generateString(length) {
   var result = ' ';
-  const alphabetLength = alphabet.length;
+  const alphabetUpperLength = alphabetUpper.length;
+  const alphabetLowerLength = alphabetLower.length;
   const numbersLength = numbers.length;
   const specialLength = special.length;
+ 
   for ( var i = 0; i < length; i++) {
-    result += alphabet.charAt(Math.floor(Math.random() * alphabetLength));
+    if (passwordChoice.upper === "yes") {
+      result += alphabetUpper.charAt(Math.floor(Math.random() * alphabetUpperLength));
+    }
+    if (passwordChoice.lower === "yes") {
+      result += alphabetLower.charAt(Math.floor(Math.random() * alphabetLowerLength));
+    }
     if (passwordChoice.num === "yes") {
       result += numbers.charAt(Math.floor(Math.random() * numbersLength));
     }
@@ -45,9 +57,9 @@ function generateString(length) {
       result += special.charAt(Math.floor(Math.random() * specialLength));
     }
   }
-  if (passwordChoice.case === "lowercase") {
-    result = result.toLocaleLowerCase();
-  }
+  // if (passwordChoice.case === "lowercase") {
+  //   result = result.toLocaleLowerCase();
+  // }
 
   console.log(result);
   return result;
@@ -72,20 +84,56 @@ function passwordLength() {
 //use a function to window.prompt "Do you want your password to be uppercase or lowercase?" User must choose one to proceed.
   // use ans if statement to determine yes or no. else repeat prompt
   //store answer as var passwordChoice.case
-function passwordCase() {
-  var whatCase = window.prompt("Do you want your password to be uppercase or lowercase?");
-  whatCase = whatCase.toLocaleLowerCase();
-  if (whatCase === "uppercase") {
-    passwordChoice.case = whatCase;
-  }
-  else if (whatCase === "lowercase") {
-    passwordChoice.case = whatCase;
+// function passwordCase() {
+//   var whatCase = window.prompt("Do you want your password to be uppercase or lowercase?");
+//   whatCase = whatCase.toLocaleLowerCase();
+//   if (whatCase === "uppercase") {
+//     passwordChoice.case = whatCase;
+//   }
+//   else if (whatCase === "lowercase") {
+//     passwordChoice.case = whatCase;
   
+//   }
+//   else {
+//     return passwordCase();
+//   }
+// };
+
+
+//use a function to window.prompt "Do you want your password to have uppercase letters? Yes or no." User must choose one to proceed. 
+//Use and if statement to determine yes or no, else repeat prompt 
+//Store answer in var = passwordChoice.upper
+function passwordUpper() {
+  var whatUpper = window.prompt("Do you want your password to have uppercase letters? Yes or no.");
+  whatUpper = whatUpper.toLocaleLowerCase();
+  if (whatUpper === "yes"){
+    passwordChoice.upper = whatUpper;
+  }
+  else if (whatUpper === "no") {
+    passwordChoice.upper = whatUpper;
   }
   else {
-    return passwordCase();
+    return passwordUpper();
   }
 };
+
+//use a function to window.prompt "Do you want your password to have lowercase letters? Yes or no." User must choose one to proceed. 
+//Use and if statement to determine yes or no, else repeat prompt 
+//Store answer in var = passwordChoice.lower
+function passwordLower() {
+  var whatLower = window.prompt("Do you want your password to have lowercase letters? Yes or no.");
+  whatLower = whatLower.toLocaleLowerCase();
+  if (whatLower === "yes"){
+    passwordChoice.lower = whatLower;
+  }
+  else if (whatLower === "no") {
+    passwordChoice.lower = whatLower;
+  }
+  else {
+    return passwordLower();
+  }
+};
+
 
 //use a function to window.prompt"Do you want your password to have numbers, yes or no?" User must choose one to proceed. 
 // use an if statement to determine yes or no, else repeat prompt
